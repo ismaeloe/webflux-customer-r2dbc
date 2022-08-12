@@ -1,17 +1,19 @@
-package mx.com.ismaeloe.webflux_customer_r2dbc.service;
+package mx.com.ismaeloe.webflux_customer_r2dbc.config;
 
 import java.nio.charset.StandardCharsets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
+@Profile("dev")
 @Service
-public class DataSetupService  implements CommandLineRunner {
+public class H2DevDataSetupService  implements CommandLineRunner {
 
 	@Value("classpath:h2/init.sql")
 	private Resource initSql;

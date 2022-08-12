@@ -8,7 +8,7 @@ CREATE TABLE customers (
 CREATE TABLE CustomerTransaction (
  id 		bigint auto_increment,
  idCustomer bigint,
- amound		double,
+ amount		double,
  transaction_date timestamp,
  foreign key (idCustomer) references customers(idCustomer)
 );
