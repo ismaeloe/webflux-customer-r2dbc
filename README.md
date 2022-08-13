@@ -32,6 +32,22 @@ if we use @Value("${spring.profiles.active}") and the property is not in applica
 	org.springframework.beans.factory.BeanCreationException:
 	Error creating bean with name 'webfluxCustomerR2dbcApplication':Injection of autowired dependencies failed; nested
 	java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.profiles.active' in value "${spring.profiles.active}"
-  
+
+#v0.3:
+##0.3.1 Add CustomerTransactionController 
+##0.3.2 Add @Table("CustomerTransaction") public class CustomerTransaction
+
+#0.3.2 
+  we got the error:
+	org.springframework.r2dbc.BadSqlGrammarException: executeMany; bad SQL grammar [INSERT INTO customer_transaction (idCustomer, amount, transaction_date) VALUES ($1, $2, $3)]; nested exception is io.r2dbc.spi.R2dbcBadGrammarException: [42102] [42S02] Tabla "CUSTOMER_TRANSACTION" no encontrada
+  	Table "CUSTOMER_TRANSACTION" not found; SQL statement:
+  	INSERT INTO customer_transaction (idCustomer, amount, transaction_date) VALUES ($1, $2, $3) [42102-214]
+ 
+  SOLUTION: Add @Table
+ 
+ 	@Table("CustomerTransaction")
+  	public class CustomerTransaction
+  	
 ##TODO
+Add Validation
 HandlerError
