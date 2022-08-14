@@ -32,7 +32,7 @@ public class H2DevDataSetupService  implements CommandLineRunner {
 
 			System.out.println("SQL:\n" + query );
 			
-			this.entityTemplate.getDatabaseClient()	// 1. Get Reactive Data Conection
+			this.entityTemplate.getDatabaseClient()	// 1. Get Reactive Data Connection
 								.sql(query)		// 2. Run Query
 								.then()			// 3. return Mono<Void>
 								.subscribe();	// 4. Publisher

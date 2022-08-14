@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.com.ismaeloe.webflux_customer_r2dbc.dto.CustomerDto;
+import mx.com.ismaeloe.webflux_customer_r2dbc.entity.CustomerTransaction;
 import mx.com.ismaeloe.webflux_customer_r2dbc.service.CustomerService;
+import mx.com.ismaeloe.webflux_customer_r2dbc.service.TransactionService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -22,6 +24,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService service;
+	
+	@Autowired
+	private TransactionService txService;
 	
 	@GetMapping
 	public Flux<CustomerDto> getAll() {
@@ -56,8 +61,14 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping("{id}")
-	public Mono<Void> deleteCustomer(@PathVariable int id) {	//int to Avoid Integer.NULL
+	public Mono<Void> deleteCustomer(@PathVariable Integer id) {	//int to Avoid Integer.NULL
 		return this.service.deleteCustById(id);
 	}
-	
+
+	@GetMapping(value = "/{id}/transactions")
+	public Flux<CustomerTransaction> getTransactionsByIdCustomer(@PathVariable Integer id) {
+		return this.txService.findByTxIdCustomer(id)
+						.doOnNext( tx -> System.err.println("GET /" + id + " Tx =" + tx ) );
+	}
+
 }

@@ -34,7 +34,7 @@ if we use @Value("${spring.profiles.active}") and the property is not in applica
 	java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.profiles.active' in value "${spring.profiles.active}"
 
 #v0.3:
-##0.3.1 Add CustomerTransactionController 
+##0.3.1 Add CustomerTransactionController POST 
 ##0.3.2 Add @Table("CustomerTransaction") public class CustomerTransaction
 
 #0.3.2 
@@ -47,7 +47,20 @@ if we use @Value("${spring.profiles.active}") and the property is not in applica
  
  	@Table("CustomerTransaction")
   	public class CustomerTransaction
-  	
+
+#v0.4: GET Transactions
+ ## Add GET /customer-api/v1/{id}/transactions
+ 	http://localhost:8092/customer-api/v1/1/transactions
+ 	
+ ## Add GET /customer-api/v1/transaction/all
+ 	http://localhost:8092/customer-api/v1/transaction/all
+ 	
+ ## Add GET /customer-api/v1/transaction/{id}
+ 	http://localhost:8092/customer-api/v1/transaction/5
+ 	
+ ## Add GET /customer-api/v1/transaction/?idcust
+ 	http://localhost:8092/customer-api/v1/transaction?idcust=1
+ 	
 ##TODO
 Add Validation
 HandlerError
