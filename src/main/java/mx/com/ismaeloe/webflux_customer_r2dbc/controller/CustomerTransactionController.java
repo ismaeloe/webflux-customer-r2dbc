@@ -24,7 +24,9 @@ public class CustomerTransactionController {
 
 	@Autowired
 	private TransactionService txService;
-	
+	/*
+	 * Sin LOGs
+	 */
 	@PostMapping
 	public Mono<TransactionResponseDto> createTx (@RequestBody Mono<TransactionRequestDto> txRequestDtoMono)
 	{
@@ -37,7 +39,10 @@ public class CustomerTransactionController {
 		//return txRequestDtoMono.flatMap( txRequest -> this.txService.createTx( txRequest ) );
 		  return txRequestDtoMono.flatMap( this.txService::createTx );
 	}
-
+	
+	/*
+	 * LOG Before and After TX
+	 */
 	@PostMapping("/v2")
 	public Mono< ResponseEntity<TransactionResponseDto> > createTxSubscribe (@RequestBody Mono<TransactionRequestDto> txRequestDtoMono)
 	{
@@ -53,7 +58,7 @@ public class CustomerTransactionController {
 
 	@GetMapping("/all")
 	public Flux<CustomerTransaction> getAllTransactions() {
-		return this.txService.findAll().doOnNext( tx -> System.err.println("ALL TX " + tx ));
+		return this.txService.findAll().doOnNext( tx -> System.err.println("GET /all TX " + tx ));
 	}
 	
 	@GetMapping(value = "/{id}")

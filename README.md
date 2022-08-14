@@ -60,7 +60,15 @@ if we use @Value("${spring.profiles.active}") and the property is not in applica
  	
  ## Add GET /customer-api/v1/transaction/?idcust
  	http://localhost:8092/customer-api/v1/transaction?idcust=1
- 	
+
+#v0.5 POSTGRES Docker
+##Add docker-compose.yaml
+  >docker-compose up
+  http://localhost:9000
+  Connection.host = postgres (the docker service name)
+  
+    
 ##TODO
+Add h2-console
 Add Validation
 HandlerError

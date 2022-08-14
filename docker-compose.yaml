@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=ismaeloe
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=customerdb
+    volumes:
+      - ./postgres-volume/db:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=ismaeloe@yahoo.com.mx
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - ./docker-volume/pgadmin:/var/lib/pgadmin
+    ports:
+      - 9000:80
